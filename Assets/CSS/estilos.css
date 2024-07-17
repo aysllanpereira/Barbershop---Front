@@ -1,0 +1,54 @@
+/* variáveis de cores */
+:root {
+    --body1: #889C9B;
+    --body2: #B2BEBF;
+    --container: #FDFAE0;
+}
+
+body {
+    padding: 20px;
+    background-image: linear-gradient(to right, var(--body2));
+}
+
+#message {
+    text-align: center;
+}
+
+.container {
+    width: 900px;
+    height: 70vh;
+    border: 1px solid rgba(0, 0, 0, 0.705);
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.425);
+    background-color: aliceblue;
+}
+
+ .mt-5 {
+    display: flex;
+    justify-content: center;
+}
+
+#booking-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mb-3 {
+    width: 350px;
+}
+
+.mb-5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*  .form-label {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}  */
