@@ -48,19 +48,11 @@
                 </div>
                 <button type="submit" class="btn btn-primary" onclick="enviar(event)">Agendar</button>
             </form>
-            <!-- <div class="mb-3 mt-4">
-                <label for="available-times" class="form-label">Horários Disponíveis:</label>
-                <div id="available-times" class="form-control"></div>
-            </div>
-            <div class="mb-3">
-                <label for="unavailable-times" class="form-label">Horários Indisponíveis:</label>
-                <div id="unavailable-times" class="form-control"></div>
-            </div> -->
         </div>
 
         <div class="col-md-6">
             <h1 class="mt-5">Filtrar Agendamentos</h1>
-            <form id="filter-form" class="mb-5">
+            <form id="filter-form" class="mb-5" onsubmit="filtrar(event)">
                 <div class="mb-3">
                     <label for="filter-professional" class="form-label">Profissional:</label>
                     <select class="form-select" id="filter-professional" required>
@@ -78,7 +70,7 @@
                         <option value="week">Semana</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="filtrar(event)">Filtrar</button>
+                <button type="submit" class="btn btn-primary">Filtrar</button>
             </form>
             <div id="filter-results" class="mt-3"></div>
         </div>
