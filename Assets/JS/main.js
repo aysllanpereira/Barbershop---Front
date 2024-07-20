@@ -1,3 +1,4 @@
+// tempo
 const serviceTime = {
     'Cabelo': 40,
     'Cabelo e Barba': 80,
@@ -82,42 +83,37 @@ function enviar(event) {
                 messageDiv.textContent = "";
                 messageDiv.classList.remove("alert", "alert-success", "alert-warning", "alert-danger");
                 messageDiv.disabled = false;
-            }, 15000);
+            }, 3000);
         })
         .catch(error => {
             const messageDiv = document.getElementById("message");
-            messageDiv.textContent = "Erro ao realizar o agendamento. Tente novamente.";
+            messageDiv.textContent = "Erro ao realizar o agendamento.";
             messageDiv.classList.add("alert", "alert-danger");
             console.error("Erro:", error);
-
-            messageDiv.disabled = true;
-
-            setTimeout(() => {
-                messageDiv.textContent = "";
-                messageDiv.classList.remove("alert", "alert-success", "alert-warning", "alert-danger");
-                messageDiv.disabled = false;
-            }, 15000);
         });
     }
 }
 
-// Formatando a data e hora no padrão brasileiro
+// Função para formatar data e hora
 function formatarDateTime(dateStr, timeStr) {
-    const dateTimeStr = `${dateStr}T${timeStr}`;
-    const dateTime = new Date(dateTimeStr);
+    const dateParts = dateStr.split('-'); 
+    const timeParts = timeStr.split(':'); 
 
-    const options = {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-    };
+    // if (dateParts.length !== 3 || timeParts.length !== 2) {
+    //     console.error("Data ou hora inválida:", dateStr, timeStr);
+    //     return "Data ou hora inválida";
+    // }
 
-    return dateTime.toLocaleDateString('pt-BR', options) + ' ' + dateTime.toLocaleTimeString('pt-BR', options);
+    const day = dateParts[2];
+    const month = dateParts[1];
+    const year = dateParts[0];
+    const hour = timeParts[0];
+    const minute = timeParts[1];
+
+    return `${day}/${month}/${year} ${hour}:${minute}`;
 }
 
+// Função para filtrar agendamentos
 function filtrar(event) {
     event.preventDefault();
 
@@ -156,74 +152,3 @@ function filtrar(event) {
         console.error("Erro:", error);
     });
 }
-
-// Listar horários disponíveis
-// document.getElementById('date').addEventListener('change', function () {
-//     const professional = document.getElementById('professional').value;
-//     const date = this.value;
-
-//     if (professional && date) {
-//         fetch(`http://localhost:3000/availability?professional=${professional}&date=${date}`)
-//             .then(response => response.json())
-//             .then(data => {
-//                 const availableTimesDiv = document.getElementById('available-times');
-//                 const unavailableTimesDiv = document.getElementById('unavailable-times');
-//                 availableTimesDiv.innerHTML = '';
-//                 unavailableTimesDiv.innerHTML = '';
-
-//                 if (data.success) {
-//                     const bookedTimes = data.bookedTimes;
-//                     const { availableTimes, unavailableTimes } = generateAvailableAndUnavailableTimes(bookedTimes);
-
-//                     // Exibir horários disponíveis
-//                     availableTimes.forEach(time => {
-//                         const timeDiv = document.createElement('div');
-//                         timeDiv.textContent = time;
-//                         availableTimesDiv.appendChild(timeDiv);
-//                     });
-
-//                     // Exibir horários indisponíveis
-//                     unavailableTimes.forEach(time => {
-//                         const timeDiv = document.createElement('div');
-//                         timeDiv.textContent = time;
-//                         unavailableTimesDiv.appendChild(timeDiv);
-//                     });
-//                 } else {
-//                     console.error('Erro ao obter horários disponíveis:', data.message);
-//                 }
-//             })
-//             .catch(error => {
-//                 console.error('Erro ao buscar horários disponíveis:', error);
-//             });
-//     }
-// });
-
-// function generateAvailableAndUnavailableTimes(bookedTimes) {
-//     const startTime = 8;
-//     const endTime = 18;
-//     const timeInterval = 30;
-
-//     const availableTimes = [];
-//     const unavailableTimes = [];
-
-//     for (let hour = startTime; hour < endTime; hour++) {
-//         for (let minute = 0; minute < 60; minute += timeInterval) {
-//             const timeString = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
-//             const timeSlot = new Date(`1970-01-01T${timeString}:00Z`).toISOString();
-
-//             const isBooked = bookedTimes.some(booked => {
-//                 const bookedStart = new Date(booked.startTime).toISOString();
-//                 const bookedEnd = new Date(booked.endTime).toISOString();
-//                 return timeSlot >= bookedStart && timeSlot < bookedEnd;
-//             });
-
-//             if (isBooked) {
-//                 unavailableTimes.push(timeString);
-//             } else {
-//                 availableTimes.push(timeString);
-//             }
-//         }
-//     }
-
-//     return { availableTimes, unavailableTimes };
-// }
