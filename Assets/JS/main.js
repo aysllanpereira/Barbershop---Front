@@ -66,8 +66,8 @@ function enviar(event) {
             const messageDiv = document.getElementById("message");
             messageDiv.className = "";
             if (data.success) {
-                const formattedDateTime = formatarDateTime(date, time);
-                messageDiv.textContent = `Agendamento realizado com sucesso! ${formattedDateTime}`;
+                // const formattedDateTime = formatarDateTime(data.booking.date, data.booking.time);
+                messageDiv.textContent = `Agendamento realizado com sucesso!`;
                 messageDiv.classList.add("alert", "alert-success");
             } else if (data.alternative) {
                 messageDiv.textContent = `Profissional indisponível. Tente com outro profissional!`;
@@ -96,21 +96,16 @@ function enviar(event) {
 
 // Função para formatar data e hora
 function formatarDateTime(dateStr, timeStr) {
-    const dateParts = dateStr.split('-'); 
-    const timeParts = timeStr.split(':'); 
+    const utcDate = new Date(`${dateStr}T${timeStr}Z`);
+    const localDate = new Date(utcDate.getTime() - (utcDate.getTimezoneOffset() * 60000)); 
 
-    // if (dateParts.length !== 3 || timeParts.length !== 2) {
-    //     console.error("Data ou hora inválida:", dateStr, timeStr);
-    //     return "Data ou hora inválida";
-    // }
+    const day = localDate.getDate().toString().padStart(2, '0');
+    const month = (localDate.getMonth() + 1).toString().padStart(2, '0'); 
+    const year = localDate.getFullYear();
+    const hour = localDate.getHours().toString().padStart(2, '0');
+    const minute = localDate.getMinutes().toString().padStart(2, '0');
 
-    const day = dateParts[2];
-    const month = dateParts[1];
-    const year = dateParts[0];
-    const hour = timeParts[0];
-    const minute = timeParts[1];
-
-    return `${day}/${month}/${year} ${hour}:${minute}`;
+    return `Data: ${day}/${month}/${year} às ${hour}:${minute}h`;
 }
 
 // Função para filtrar agendamentos
@@ -133,7 +128,7 @@ function filtrar(event) {
                     const appointmentDiv = document.createElement('div');
                     appointmentDiv.classList.add('appointment');
                     const formattedDateTime = formatarDateTime(appointment.date, appointment.time);
-                    appointmentDiv.textContent = `Nome: ${appointment.name}, Serviço: ${appointment.service}, Data e Hora: ${formattedDateTime}`;
+                    appointmentDiv.textContent = `Nome: ${appointment.name}, Serviço: ${appointment.service}, ${formattedDateTime}`;
                     filterResults.appendChild(appointmentDiv);
                 });
             } else {
