@@ -66,8 +66,8 @@ function enviar(event) {
             const messageDiv = document.getElementById("message");
             messageDiv.className = "";
             if (data.success) {
-                // const formattedDateTime = formatarDateTime(data.booking.date, data.booking.time);
-                messageDiv.textContent = `Agendamento realizado com sucesso!`;
+                const formattedDateTime = formatarDateTime(data.booking.date, data.booking.time);
+                messageDiv.textContent = `Agendamento realizado com sucesso!\n${formattedDateTime}`;
                 messageDiv.classList.add("alert", "alert-success");
             } else if (data.alternative) {
                 messageDiv.textContent = `Profissional indisponível. Tente com outro profissional!`;
@@ -97,15 +97,15 @@ function enviar(event) {
 // Função para formatar data e hora
 function formatarDateTime(dateStr, timeStr) {
     const utcDate = new Date(`${dateStr}T${timeStr}Z`);
-    const localDate = new Date(utcDate.getTime() - (utcDate.getTimezoneOffset() * 60000)); 
+    const localDate = new Date(utcDate.getTime() - (utcDate.getTimezoneOffset() * 60000));
 
     const day = localDate.getDate().toString().padStart(2, '0');
-    const month = (localDate.getMonth() + 1).toString().padStart(2, '0'); 
+    const month = (localDate.getMonth() + 1).toString().padStart(2, '0');
     const year = localDate.getFullYear();
     const hour = localDate.getHours().toString().padStart(2, '0');
     const minute = localDate.getMinutes().toString().padStart(2, '0');
 
-    return `Data: ${day}/${month}/${year} às ${hour}:${minute}h`;
+    return `Data: ${day}/${month}/${year}\nàs ${hour}:${minute}h`;
 }
 
 // Função para filtrar agendamentos
@@ -145,5 +145,43 @@ function filtrar(event) {
         filterResults.textContent = 'Erro ao filtrar os agendamentos.';
         filterResults.classList.add('alert', 'alert-danger');
         console.error("Erro:", error);
+    });
+}
+
+function cancelar(event) {
+    event.preventDefault();
+
+    const professional = document.getElementById('cancel-professional').value;
+    const date = document.getElementById('cancel-date').value;
+
+    fetch('http://localhost:3000/cancel', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ professional, date })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const cancelResults = document.getElementById('cancel-results');
+        cancelResults.className = '';
+        if (data.success) {
+            cancelResults.textContent = 'Agendamento cancelado com sucesso!';
+            cancelResults.classList.add('alert', 'alert-success');
+        } else {
+            cancelResults.textContent = 'Erro ao cancelar o agendamento. Tente novamente.';
+            cancelResults.classList.add('alert', 'alert-danger');
+        }
+
+        setTimeout(() => {
+            cancelResults.textContent = '';
+            cancelResults.classList.remove('alert', 'alert-success', 'alert-danger');
+        }, 3000);
+    })
+    .catch(error => {
+        const cancelResults = document.getElementById('cancel-results');
+        cancelResults.textContent = 'Erro ao cancelar o agendamento.';
+        cancelResults.classList.add('alert', 'alert-danger');
+        console.error('Erro:', error);
     });
 }
