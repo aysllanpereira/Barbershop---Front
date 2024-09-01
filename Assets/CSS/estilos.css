@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 /* variáveis de cores */
 :root {
     --body1: #889C9B;
@@ -8,6 +13,41 @@
 body {
     padding: 20px;
     background-image: linear-gradient(to right, var(--body2));
+    background-color: #1a1a1a;
+
+}
+
+.header-barber {
+    background-color: #000; /* Cabeçalho preto */
+    height: 150px; /* Altura de 150px */
+}
+
+.navbar {
+    padding: 0;
+    height: 100%; /* Certifica-se de que a navbar ocupe toda a altura */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: white; /* Cor do logo */
+    margin-left: 15px; /* Espaço para alinhar o logo à esquerda */
+}
+
+.navbar-nav .nav-link {
+    color: white; /* Cor dos links */
+    margin: 0 15px; /* Espaçamento entre os links */
+}
+
+.navbar-collapse {
+    justify-content: center; /* Centraliza os itens no cabeçalho */
+}
+
+.navbar-toggler {
+    border-color: white;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
 }
 
 #message {
@@ -15,12 +55,11 @@ body {
 }
 
 .container {
-    width: 900px;
-    height: 70vh;
-    border: 1px solid rgba(0, 0, 0, 0.705);
-    border-radius: 8px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.425);
-    background-color: aliceblue;
+    background-color: #2c2c2c; /* Tom mais escuro para contrastar com o background */
+    color: white; /* Texto branco para contraste */
+    border: none; /* Remove a borda */
+    border-radius: 10px; /* Cantos levemente arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidade */
 }
 
 .mt-5 {
