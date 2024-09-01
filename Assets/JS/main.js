@@ -148,9 +148,11 @@ function filtrar(event) {
     });
 }
 
+// função para cancelar os agendamentos
 function cancelar(event) {
     event.preventDefault();
 
+    const name = document.getElementById('cancel-name').value;
     const professional = document.getElementById('cancel-professional').value;
     const date = document.getElementById('cancel-date').value;
 
@@ -159,7 +161,7 @@ function cancelar(event) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ professional, date })
+        body: JSON.stringify({ name, professional, date })
     })
     .then(response => response.json())
     .then(data => {
