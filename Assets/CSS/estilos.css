@@ -188,9 +188,8 @@ body {
     flex: 1;
 }
 
-.img-reverse img {
+.img-reverse iframe {
     width: 100%;
-    height: auto;
     border-radius: 8px;
 }
 
