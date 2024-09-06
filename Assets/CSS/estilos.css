@@ -20,6 +20,7 @@ body {
 .header-barber {
     background-color: #121212; /* Cabeçalho preto */
     height: 150px; /* Altura de 150px */
+    border-radius: 8px 0;
 }
 
 .navbar {
@@ -193,3 +194,39 @@ body {
     border-radius: 8px;
 }
 
+.carousel {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text-galery h3{
+    color: white;
+    font-size: 2.8em;
+}
+
+.carousel-item img {
+    width: 1200px;
+    height: 800px;
+}
+
+.footer {
+    margin-top: 80px;
+    background-color: #121212;
+    height: 350px;
+    border-radius: 0 8px;
+
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-footer {
+    color: white;
+    margin-top: 35px;
+}
