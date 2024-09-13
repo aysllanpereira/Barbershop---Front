@@ -31,6 +31,18 @@ function showLides(n) {
     slides[slideIndex - 1].style.display = "block";
 }
 
+// exibir home
+function showHome() {
+    document.getElementById("main-content").style.display = "block";
+    document.getElementById("sheduling-content").style.display = "none";
+}
+
+// exibir área de agendamento
+function showSheduling() {
+    document.getElementById("main-content").style.display = "none";
+    document.getElementById("sheduling-content").style.display = "block";
+}
+
 // tempo
 const serviceTime = {
     'Cabelo': 40,
