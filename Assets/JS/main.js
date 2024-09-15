@@ -88,6 +88,15 @@ function validation() {
     return true;
 }
 
+// Função para limpar o formulário
+function resetForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("service").value = "";
+    document.getElementById("professional").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("time").value = "";
+}
+
 // Função para enviar formulário
 function enviar(event) {
     event.preventDefault();
@@ -114,6 +123,9 @@ function enviar(event) {
                 const formattedDateTime = formatarDateTime(data.booking.date, data.booking.time);
                 messageDiv.textContent = `Agendamento realizado com sucesso!\n${formattedDateTime}`;
                 messageDiv.classList.add("alert", "alert-success");
+
+                // chamando a função para limpar o formulário
+                resetForm();
             } else if (data.alternative) {
                 messageDiv.textContent = `Profissional indisponível. Tente com outro profissional!`;
                 messageDiv.classList.add("alert", "alert-warning");

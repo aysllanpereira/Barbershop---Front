@@ -302,6 +302,15 @@ body {
     cursor: pointer;
 }
 
+/* Article */
+article {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
 /* Footer */
 .footer {
     background-color: #121212;
@@ -364,6 +373,14 @@ body {
     .carousel .text-galery h3 {
         font-size: 1.8em;
     }
+
+    .mb-5 {
+        font-size: 10px;
+    }
+
+    .form-label {
+        font-size: 8px;
+    }
 }
 
 /* Para celulares médios */
@@ -389,6 +406,30 @@ body {
 
     .carousel .text-galery h3 {
         font-size: 2em;
+    }
+
+    article {
+        padding: 5px;
+    }
+
+    .col-md-6 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #booking-form,
+    #calcel-form,
+    #filter-form {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .mb-3 {
+        width: 100%;
+    }
+
+    .container {
+        padding: 10px;
     }
 }
 
@@ -435,6 +476,37 @@ body {
     .text1-footer,
     .text2-footer {
         margin-bottom: 20px;
+    }
+
+    article {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .col-md-6 {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        padding: 20px;
+        margin-top: 30px;
+    }
+
+    #booking-form,
+    #calcel-form,
+    #filter-form {
+        width: 100%;
+    }
+
+    .mb-3 {
+        width: 100%;
+    }
+
+    #message {
+        margin-top: 20px;
     }
 }
 
