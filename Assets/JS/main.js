@@ -45,23 +45,57 @@ function showSheduling() {
 
 // tempo
 const serviceTime = {
-    'Cabelo': 40,
-    'Cabelo e Barba': 80,
-    'Barba': 30,
+    'Cabelo': 35,
+    'Cabelo e Barba': 60,
+    'Barba': 35,
     'Personalizado': 120
 };
 
+// validar nome
+function validarNomeCompleto(nome) {
+    const nomeArray = nome.trim().split(/\s+/);
+    return nomeArray.length >= 2;
+}
+
+// validar data
+function validarDataDayjs(dateStr) {
+    const isValid = dayjs(dateStr, "DD/MM/YYYY", true).isValid();
+    if(!isValid) {
+        return false;
+    }
+
+    const date = dayjs(dateStr, "DD/MM/YYYY");
+    const today = dayjs();
+    if(date.isBefore(today, "day")) {
+        return false;
+    }
+
+    return true;
+}
+
 // Validação
 function validation() {
-    const name = document.getElementById('name').value;
+    const name = document.getElementById('name').value.trim();
     const service = document.getElementById('service').value;
     const professional = document.getElementById('professional').value;
     const date = document.getElementById('date').value;
     const time = document.getElementById('time').value;
     const messageDiv = document.getElementById("message");
 
-    if (!name || !service || !professional || !date || !time) {
+    if(!validarNomeCompleto(name)) {
+        messageDiv.textContent = "Por favor, insira nome e sobrenome";
+        messageDiv.classList = "alert alert-warning";
+        return false;
+    }
+
+    if (!service || !professional || !date || !time) {
         messageDiv.textContent = "Por favor, preencha os campos corretamente!";
+        messageDiv.classList = "alert alert-warning";
+        return false;
+    }
+
+    if(!validarDataDayjs(date)) {
+        messageDiv.textContent = "Por favor, insira uma data válida no futoro (DD/MM/YYYY)!";
         messageDiv.classList = "alert alert-warning";
         return false;
     }
@@ -73,6 +107,14 @@ function validation() {
 
     if (selectedDate < currentTime) {
         messageDiv.textContent = "Por favor, selecione uma data e hora futura!";
+        messageDiv.classList = "alert alert-warning";
+        return false;
+    }
+
+    const selectedDateTime = dayjs(`${date} ${time}`, "DD/MM/YYYY HH:mm");
+    const hour = selectedDate.getHours();
+    if(hour < 8 || hour >= 20) {
+        messageDiv.textContent = "O horário deve ser entre 08:00 e 20:00!";
         messageDiv.classList = "alert alert-warning";
         return false;
     }
