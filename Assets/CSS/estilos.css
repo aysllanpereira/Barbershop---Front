@@ -366,23 +366,23 @@ article {
     color: white;
     padding: 20px 0;
     border-radius: 8px 0;
-    margin-top: 80px; /* Espaço acima do footer para garantir que ele não fique colado em outros conteúdos */
+    margin-top: 80px; 
 }
 
 .footer-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px; /* Alinhar com a largura máxima das outras seções */
-    margin: 0 auto; /* Centralizar horizontalmente */
+    max-width: 1200px; 
+    margin: 0 auto; 
     padding: 0 20px;
-    gap: 40px; /* Espaço entre as colunas */
+    gap: 40px; 
 }
 
 .text1-footer,
 .text2-footer {
     text-align: center;
-    width: 100%; /* Garante que as seções ocupem a mesma largura */
+    width: 100%; 
 }
 
 .text1-footer h3,
@@ -397,9 +397,12 @@ article {
 
 
 /* Media Queries */
-
-/* Para celulares pequenos */
 @media (max-width: 320px) {
+    
+    .header-barber {
+        height: 220px;
+    }
+
     .frase h1 {
         font-size: 2em;
     }
@@ -434,6 +437,11 @@ article {
 
 /* Para celulares médios */
 @media (max-width: 480px) {
+    
+    .header-barber {
+        height: 220px;
+    }
+
     .frase h1 {
         font-size: 3em;
     }
@@ -484,6 +492,11 @@ article {
 
 /* Para celulares grandes e tablets em modo retrato */
 @media (max-width: 768px) {
+
+    .header-barber {
+        height: 220px;
+    }
+
     .img-fixed {
         height: 400px;
     }
@@ -509,7 +522,7 @@ article {
     }
 
     .image-gallery img {
-        width: 100%;
+        width: 330px;
         height: auto;
     }
 
@@ -577,12 +590,12 @@ article {
 
     .img-content img,
     .img-reverse img {
-        width: 100%;
+        width: 450px;
         height: auto;
     }
 
     .image-gallery img {
-        width: 100%;
+        width: 300px;
         height: auto;
     }
 
