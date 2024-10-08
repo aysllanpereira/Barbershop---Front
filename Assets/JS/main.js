@@ -1,3 +1,18 @@
+// rolagem de página
+function pageScrolling(element) {
+    document.querySelector(element).scrollIntoView({behavior: "smooth"});
+}
+
+document.querySelector("#home").addEventListener("click", function(event) {
+    event.preventDefault();
+    pageScrolling("#inicio");
+});
+
+document.querySelector("#serv").addEventListener("click", function(event) {
+    event.preventDefault();
+    pageScrolling("#services");
+})
+
 // modal
 function openModal() {
     document.getElementById("imageModal").style.display = "block";
