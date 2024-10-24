@@ -11,7 +11,17 @@ document.querySelector("#home").addEventListener("click", function(event) {
 document.querySelector("#serv").addEventListener("click", function(event) {
     event.preventDefault();
     pageScrolling("#services");
-})
+});
+
+document.querySelector("#loc").addEventListener("click", function(event) {
+    event.preventDefault();
+    pageScrolling("#localizacao");
+});
+
+document.querySelector("#galery").addEventListener("click", function(event) {
+    event.preventDefault();
+    pageScrolling("#galeria");
+});
 
 // modal
 function openModal() {
@@ -31,6 +41,7 @@ function plusSlides(n) {
     showLides(slideIndex += n);
 }
 
+// slides 
 function showLides(n) {
     let i;
     let slides = document.getElementsByClassName("mySlides");
@@ -56,6 +67,24 @@ function showHome() {
 function showSheduling() {
     document.getElementById("main-content").style.display = "none";
     document.getElementById("sheduling-content").style.display = "block";
+}
+
+// ocultar agendamento ao clicar em serviços
+function showServices() {
+    document.getElementById("main-content").style.display = "block";
+    document.getElementById("sheduling-content").style.display = "none";
+}
+
+// ocultar agendamento ao clicar em galeria
+function showGalery() {
+    document.getElementById("main-content").style.display = "block";
+    document.getElementById("sheduling-content").style.display = "none";
+}
+
+// ocultar agendamento ao clicar em localização
+function showLoc() {
+    document.getElementById("main-content").style.display = "block";
+    document.getElementById("sheduling-content").style.display = "none";
 }
 
 // tempo

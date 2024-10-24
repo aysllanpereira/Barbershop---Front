@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="Assets/CSS/estilos.css">
     <title>BarberShop</title>
 </head>
-<body>
-    <header id="inicio">
+<body id="inicio">
+    <header>
         <div class="header-barber">
             <nav class="navbar navbar-expand-sm">
                 <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -23,13 +23,16 @@
                                 <a class="nav-link" href="#" id="home" onclick="showHome()">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="serv">Serviços</a>
+                                <a class="nav-link" href="#" id="serv" onclick="showServices()">Serviços</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" onclick="showSheduling()">Agendamento</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="loc">Localização</a>
+                                <a href="#" class="nav-link" id="galery" onclick="showGalery()">Galeria</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="loc" onclick="showLoc()">Localização</a>
                             </li>
                         </ul>
                     </div>
@@ -41,7 +44,7 @@
     
     <main id="main-content">
 
-        <section>
+        <!-- <section>
             <div class="img-fixed">
                 <section class="img">
                     <div class="frase">
@@ -49,7 +52,7 @@
                     </div>
                 </section>
             </div>
-        </section>
+        </section> -->
         
         <div class="text-apresent">
             <h1>Bem-Vindos a JRégua Original</h1>
@@ -62,7 +65,7 @@
     
                 <div class="content">
                     <div class="img-content">
-                        <img src="Assets/IMG/fundo-3.jpeg" alt="Imagem Corte">
+                        <img src="Assets/IMG/fundo-1.jpeg" alt="Imagem Corte">
                     </div>
                     <div class="text-content">
                         <p>A JRégua é um espaço onde os homens podem se cuidar, se sentir bem e sair com um visual impecável. Nosso ambiente se preocupa em oferecer um serviço completo e diferenciado para nossos clientes. Desde a decoração até o atendimento, tudo é pensado para criar uma experiência única.</p>
@@ -103,7 +106,7 @@
             
         </section>
 
-        <section class="galery">
+        <section class="galery" id="galeria">
 
             <div class="text-galery">
                 <h3>Nossa Galeria</h3>
@@ -285,7 +288,7 @@
             </div>
 
             <div class="text2-footer">
-                <h3>Nosso Endereço</h3>
+                <h3 id="localizacao">Nosso Endereço</h3>
                 <p><i class="bi bi-geo-alt"></i> Rua 20</p>
             </div>
 
