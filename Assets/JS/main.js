@@ -87,6 +87,17 @@ function showLoc() {
     document.getElementById("sheduling-content").style.display = "none";
 }
 
+// barra de navegação
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById("header");
+    const menuButton = document.getElementById("menu-btn");
+    const collapsibleNavbar = document.getElementById("collapsibleNavbar");
+
+    menuButton.addEventListener("click", function() {
+        header.classList.toggle('expand');
+    })
+})
+
 // tempo
 const serviceTime = {
     'Cabelo': 35,
