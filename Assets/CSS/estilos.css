@@ -430,16 +430,27 @@ article {
     width: 100%; 
 }
 
+.footer-content p {
+    cursor: pointer;
+}
+
 .footer-content p .bi-instagram:hover {
     color: #E1306C;
+    cursor: pointer;
 }
 
 .footer-content p .bi-facebook:hover {
     color: #1877F2;
+    cursor: pointer;
 }
 
 .footer-content p .bi-whatsapp:hover {
-    color: #25D366; 
+    color: #25D366;
+    cursor: pointer;
+}
+
+.footer-content p .bi-geo-alt:hover {
+    color: #FFA500;
 }
 
 .text1-footer h3,
