@@ -231,43 +231,43 @@ function validation() {
     return true;
 }
 
-function enviar(event) {
-    event.preventDefault();
+// function enviar(event) {
+//     event.preventDefault();
 
-    // Chama a função de validação
-    if (validation()) {
-        const name = document.getElementById("name").value;
-        const service = document.getElementById("service").value;
-        const professional = document.getElementById("professional").value;
-        const date = document.getElementById("date").value;
-        const time = document.getElementById("time").value;
+//     // Chama a função de validação
+//     if (validation()) {
+//         const name = document.getElementById("name").value;
+//         const service = document.getElementById("service").value;
+//         const professional = document.getElementById("professional").value;
+//         const date = document.getElementById("date").value;
+//         const time = document.getElementById("time").value;
 
-        const bookingData = { name, service, professional, date, time };
+//         const bookingData = { name, service, professional, date, time };
 
-        // Verifica conflito de agendamento
-        if (verificarConflito(bookingData)) {
-            mostrarMensagem("Agendamento já existente!", "warning");
-            return;
-        }
+//         // Verifica conflito de agendamento
+//         if (verificarConflito(bookingData)) {
+//             mostrarMensagem("Agendamento já existente!", "warning");
+//             return;
+//         }
 
-        // Salva no localStorage
-        salvarAgendamento(bookingData);
+//         // Salva no localStorage
+//         salvarAgendamento(bookingData);
 
-        // Envia agendamento para WhatsApp
-        enviarParaWhatsapp(bookingData);
+//         // Envia agendamento para WhatsApp
+//         enviarParaWhatsapp(bookingData);
 
-        // Reseta o formulário após o envio
-        resetForm();
-    }
-}
+//         // Reseta o formulário após o envio
+//         resetForm();
+//     }
+// }
 
 
 // salvar no localstorage
-function salvarAgendamento(bookingData) {
-    const bookingList = JSON.parse(localStorage.getItem("bookingDataList")) || [];
-    bookingList.push(bookingData);
-    localStorage.setItem("bookingDataList", JSON.stringify(bookingList));
-}
+// function salvarAgendamento(bookingData) {
+//     const bookingList = JSON.parse(localStorage.getItem("bookingDataList")) || [];
+//     bookingList.push(bookingData);
+//     localStorage.setItem("bookingDataList", JSON.stringify(bookingList));
+// }
 
 // exibir mensagem
 function mostrarMensagem(mensagem, tipo) {
@@ -277,32 +277,32 @@ function mostrarMensagem(mensagem, tipo) {
 }
 
 // enviar mensagem no zap
-function enviarParaWhatsapp(bookingData) {
-    const { name, service, professional, date, time } = bookingData;
-    const message = `Olá! Gostaria de agendar um horário. Nome: ${name}, Serviço: ${service}, Profissional: ${professional}, Data: ${date} e horário: ${time}`;
-    const numberWhatsapp = "5561998701721";
-    const whatsappUrl = `https://wa.me/${numberWhatsapp}?text=${message}`;
-    window.open(whatsappUrl, "_blank");
+// function enviarParaWhatsapp(bookingData) {
+//     const { name, service, professional, date, time } = bookingData;
+//     const message = `Olá! Gostaria de agendar um horário. Nome: ${name}, Serviço: ${service}, Profissional: ${professional}, Data: ${date} e horário: ${time}`;
+//     const numberWhatsapp = "5561998701721";
+//     const whatsappUrl = `https://wa.me/${numberWhatsapp}?text=${message}`;
+//     window.open(whatsappUrl, "_blank");
 
-}
+// }
 
 // filtrar agendamento
-function filtrarAgendamento(event) {
-    event.preventDefault();
+// function filtrarAgendamento(event) {
+//     event.preventDefault();
 
-    const filterProfessional = document.getElementById("filter-professional").value;
-    const filterPeriod = document.getElementById("filter-period").value;
-    const bookingList = JSON.parse(localStorage.getItem("bookingDataList")) || [];
+//     const filterProfessional = document.getElementById("filter-professional").value;
+//     const filterPeriod = document.getElementById("filter-period").value;
+//     const bookingList = JSON.parse(localStorage.getItem("bookingDataList")) || [];
 
-    const filteredBookings = bookingList.filter(agendamento => {
-        const matchesProfessional = filterProfessional ? agendamento.professional === filterProfessional : true;
-        const matchesPeriod = checkPeriod(agendamento.date, filterPeriod);
+//     const filteredBookings = bookingList.filter(agendamento => {
+//         const matchesProfessional = filterProfessional ? agendamento.professional === filterProfessional : true;
+//         const matchesPeriod = checkPeriod(agendamento.date, filterPeriod);
 
-        return matchesProfessional && matchesPeriod;
-    });
+//         return matchesProfessional && matchesPeriod;
+//     });
 
-    mostrarResultadosFiltrados(filteredBookings);
-}
+//     mostrarResultadosFiltrados(filteredBookings);
+// }
 
 function checkPeriod(dateStr, period) {
     const today = dayjs();
@@ -320,42 +320,42 @@ function checkPeriod(dateStr, period) {
     }
 }
 
-function mostrarResultadosFiltrados(filteredBookings) {
-    const resultsDiv = document.getElementById("filter-results");
-    resultsDiv.innerHTML = "";
+// function mostrarResultadosFiltrados(filteredBookings) {
+//     const resultsDiv = document.getElementById("filter-results");
+//     resultsDiv.innerHTML = "";
 
-    if(filteredBookings.length === 0) {
-        resultsDiv.textContent = "Nenhum agendamento encontrato!";
-    } else {
-        filteredBookings.forEach(booking => {
-            const item = document.createElement("div");
-            item.textContent = `${booking.name} - ${booking.professional} - ${booking.date} - ${booking.time}`;
-            resultsDiv.appendChild(item);
-        });
-    }
-}
+//     if(filteredBookings.length === 0) {
+//         resultsDiv.textContent = "Nenhum agendamento encontrato!";
+//     } else {
+//         filteredBookings.forEach(booking => {
+//             const item = document.createElement("div");
+//             item.textContent = `${booking.name} - ${booking.professional} - ${booking.date} - ${booking.time}`;
+//             resultsDiv.appendChild(item);
+//         });
+//     }
+// }
 
 // cancelar agendamento
-function cancelarAgendamento() {
-    const cancelName = document.getElementById("cancel-name").value;
-    const cancelProfessional = document.getElementById("cancel-professional").value;
-    const cancelDate = document.getElementById("cancel-date").value;
-    let bookingList = JSON.parse(localStorage.getItem("bookingDataList")) || [];
+// function cancelarAgendamento() {
+//     const cancelName = document.getElementById("cancel-name").value;
+//     const cancelProfessional = document.getElementById("cancel-professional").value;
+//     const cancelDate = document.getElementById("cancel-date").value;
+//     let bookingList = JSON.parse(localStorage.getItem("bookingDataList")) || [];
 
-    const index = bookingList.findIndex(booking =>
-        booking.name === cancelName &&
-        booking.professional === cancelProfessional &&
-        booking.date === cancelDate
-    );
+//     const index = bookingList.findIndex(booking =>
+//         booking.name === cancelName &&
+//         booking.professional === cancelProfessional &&
+//         booking.date === cancelDate
+//     );
 
-    if (index !== -1) {
-        bookingList.splice(index, 1);
-        localStorage.setItem("bookingDataList", JSON.stringify(bookingList));
-        mostrarMensagem("Agendamento cancelado com sucesso", "success");
-    } else {
-        mostrarMensagem("Agendamento não encontrado", "warning");
-    }
-}
+//     if (index !== -1) {
+//         bookingList.splice(index, 1);
+//         localStorage.setItem("bookingDataList", JSON.stringify(bookingList));
+//         mostrarMensagem("Agendamento cancelado com sucesso", "success");
+//     } else {
+//         mostrarMensagem("Agendamento não encontrado", "warning");
+//     }
+// }
 
 // resetar formulário
 function resetForm() {
@@ -435,149 +435,167 @@ function resetForm() {
 
 
 // Função para enviar formulário
-// function enviar(event) {
-//     event.preventDefault();
+async function enviar(event) {
 
-//     if (validation()) {
-//         const name = document.getElementById('name').value;
-//         const service = document.getElementById('service').value;
-//         const professional = document.getElementById('professional').value;
-//         const date = document.getElementById('date').value;
-//         const time = document.getElementById('time').value;
+    event.preventDefault();
 
-//         fetch('http://localhost:3000/book', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ name, service, professional, date, time })
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             const messageDiv = document.getElementById("message");
-//             messageDiv.className = "";
-//             if (data.success) {
-//                 const formattedDateTime = formatarDateTime(data.booking.date, data.booking.time);
-//                 messageDiv.textContent = `Agendamento realizado com sucesso!\n${formattedDateTime}`;
-//                 messageDiv.classList.add("alert", "alert-success");
+    if (validation()) {
+        const name = document.getElementById('name').value;
+        const service = document.getElementById('service').value;
+        const professional = document.getElementById('professional').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
 
-//                 // chamando a função para limpar o formulário
-//                 resetForm();
-//             } else if (data.alternative) {
-//                 messageDiv.textContent = `Profissional indisponível. Tente com outro profissional!`;
-//                 messageDiv.classList.add("alert", "alert-warning");
-//             } else {
-//                 messageDiv.textContent = "Erro ao realizar o agendamento. Tente novamente.";
-//                 messageDiv.classList.add("alert", "alert-danger");
-//             }
+        try { 
+                const response = await fetch('http://localhost:3000/book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, service, professional, date, time })
+                });
+                const data = await response.json();
+                const messageDiv = document.getElementById("message");
+                messageDiv.className = "";
 
-//             messageDiv.disabled = true;
+                if (data.success) {
+                    const formattedDateTime = formatarDateTime(data.booking.date, data.booking.time);
+                    messageDiv.textContent = `Agendamento realizado com sucesso!\n${formattedDateTime}`;
+                    messageDiv.classList.add("alert", "alert-success");
+    
+                    // chamando a função para limpar o formulário
+                    resetForm();
+                    // enviar agendamento para o whatsapp
+                    // await enviarParaWhatsapp(data.booking);
 
-//             setTimeout(() => {
-//                 messageDiv.textContent = "";
-//                 messageDiv.classList.remove("alert", "alert-success", "alert-warning", "alert-danger");
-//                 messageDiv.disabled = false;
-//             }, 3000);
-//         })
-//         .catch(error => {
-//             const messageDiv = document.getElementById("message");
-//             messageDiv.textContent = "Erro ao realizar o agendamento.";
-//             messageDiv.classList.add("alert", "alert-danger");
-//             console.error("Erro:", error);
-//         });
-//     }
+                } else if (data.alternative) {
+                    messageDiv.textContent = `Profissional indisponível. Tente com outro profissional!`;
+                    messageDiv.classList.add("alert", "alert-warning");
+                } else {
+                    messageDiv.textContent = "Erro ao realizar o agendamento. Tente novamente.";
+                    messageDiv.classList.add("alert", "alert-danger");
+                }
+    
+                messageDiv.disabled = true;
+    
+                setTimeout(() => {
+                    messageDiv.textContent = "";
+                    messageDiv.classList.remove("alert", "alert-success", "alert-warning", "alert-danger");
+                    messageDiv.disabled = false;
+                }, 3000);
+
+            } catch(error) {
+            const messageDiv = document.getElementById("message");
+            messageDiv.textContent = "Erro ao realizar o agendamento.";
+            messageDiv.classList.add("alert", "alert-danger");
+            console.error("Erro:", error);
+            };
+    }
+}
+
+// async function enviarParaWhatsapp(booking) {
+//     const name = document.getElementById('name').value;
+//     const service = document.getElementById('service').value;
+//     const professional = document.getElementById('professional').value;
+//     const date = document.getElementById('date').value;
+//     const time = document.getElementById('time').value;
+
+//     const numberZap = "5561998701721";
+//     let messageZap = `Olá! Me chamo ${name}! Meu agendamento ficou para o dia ${date} às ${time} com o profissional ${professional} e o serviço é ${service}!`;
+
+//     const linkZap = `https://wa.me/${numberZap}?text=${messageZap}`;
 // }
 
 // Função para formatar data e hora
-// function formatarDateTime(dateStr, timeStr) {
-//     const utcDate = new Date(`${dateStr}T${timeStr}Z`);
-//     const localDate = new Date(utcDate.getTime() - (utcDate.getTimezoneOffset() * 60000));
+function formatarDateTime(dateStr, timeStr) {
+    const utcDate = new Date(`${dateStr}T${timeStr}Z`);
+    const localDate = new Date(utcDate.getTime() - (utcDate.getTimezoneOffset() * 60000));
 
-//     const day = localDate.getDate().toString().padStart(2, '0');
-//     const month = (localDate.getMonth() + 1).toString().padStart(2, '0');
-//     const year = localDate.getFullYear();
-//     const hour = localDate.getHours().toString().padStart(2, '0');
-//     const minute = localDate.getMinutes().toString().padStart(2, '0');
+    const day = localDate.getDate().toString().padStart(2, '0');
+    const month = (localDate.getMonth() + 1).toString().padStart(2, '0');
+    const year = localDate.getFullYear();
+    const hour = localDate.getHours().toString().padStart(2, '0');
+    const minute = localDate.getMinutes().toString().padStart(2, '0');
 
-//     return `Data: ${day}/${month}/${year}\nàs ${hour}:${minute}h`;
-// }
+    return `Data: ${day}/${month}/${year}\nàs ${hour}:${minute}h`;
+}
 
 // Função para filtrar agendamentos
-// function filtrar(event) {
-//     event.preventDefault();
+function filtrar(event) {
+    event.preventDefault();
 
-//     const professional = document.getElementById('filter-professional').value;
-//     const period = document.getElementById('filter-period').value;
+    const professional = document.getElementById('filter-professional').value;
+    const period = document.getElementById('filter-period').value;
 
-//     fetch(`http://localhost:3000/filter?period=${period}&professional=${professional}`)
-//     .then(response => response.json())
-//     .then(data => {
-//         const filterResults = document.getElementById('filter-results');
-//         filterResults.innerHTML = '';
+    fetch(`http://localhost:3000/filter?period=${period}&professional=${professional}`)
+    .then(response => response.json())
+    .then(data => {
+        const filterResults = document.getElementById('filter-results');
+        filterResults.innerHTML = '';
 
-//         if (data.success) {
-//             const appointments = data.appointments;
-//             if (appointments.length > 0) {
-//                 appointments.forEach(appointment => {
-//                     const appointmentDiv = document.createElement('div');
-//                     appointmentDiv.classList.add('appointment');
-//                     const formattedDateTime = formatarDateTime(appointment.date, appointment.time);
-//                     appointmentDiv.textContent = `Nome: ${appointment.name}, Serviço: ${appointment.service}, ${formattedDateTime}`;
-//                     filterResults.appendChild(appointmentDiv);
-//                 });
-//             } else {
-//                 filterResults.textContent = 'Nenhum agendamento encontrado para o período selecionado.';
-//                 filterResults.classList.add('alert', 'alert-warning');
-//             }
-//         } else {
-//             filterResults.textContent = 'Erro ao filtrar os agendamentos.';
-//             filterResults.classList.add('alert', 'alert-danger');
-//         }
-//     })
-//     .catch(error => {
-//         const filterResults = document.getElementById('filter-results');
-//         filterResults.textContent = 'Erro ao filtrar os agendamentos.';
-//         filterResults.classList.add('alert', 'alert-danger');
-//         console.error("Erro:", error);
-//     });
-// }
+        if (data.success) {
+            const appointments = data.appointments;
+            if (appointments.length > 0) {
+                appointments.forEach(appointment => {
+                    const appointmentDiv = document.createElement('div');
+                    appointmentDiv.classList.add('appointment');
+                    const formattedDateTime = formatarDateTime(appointment.date, appointment.time);
+                    appointmentDiv.textContent = `Nome: ${appointment.name}, Serviço: ${appointment.service}, ${formattedDateTime}`;
+                    filterResults.appendChild(appointmentDiv);
+                });
+            } else {
+                filterResults.textContent = 'Nenhum agendamento encontrado para o período selecionado.';
+                filterResults.classList.add('alert', 'alert-warning');
+            }
+        } else {
+            filterResults.textContent = 'Erro ao filtrar os agendamentos.';
+            filterResults.classList.add('alert', 'alert-danger');
+        }
+    })
+    .catch(error => {
+        const filterResults = document.getElementById('filter-results');
+        filterResults.textContent = 'Erro ao filtrar os agendamentos.';
+        filterResults.classList.add('alert', 'alert-danger');
+        console.error("Erro:", error);
+    });
+}
 
 // função para cancelar os agendamentos
-// function cancelar(event) {
-//     event.preventDefault();
+function cancelar(event) {
+    event.preventDefault();
 
-//     const name = document.getElementById('cancel-name').value;
-//     const professional = document.getElementById('cancel-professional').value;
-//     const date = document.getElementById('cancel-date').value;
+    const name = document.getElementById('cancel-name').value;
+    const professional = document.getElementById('cancel-professional').value;
+    const date = document.getElementById('cancel-date').value;
 
-//     fetch('http://localhost:3000/cancel', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({ name, professional, date })
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         const cancelResults = document.getElementById('cancel-results');
-//         cancelResults.className = '';
-//         if (data.success) {
-//             cancelResults.textContent = 'Agendamento cancelado com sucesso!';
-//             cancelResults.classList.add('alert', 'alert-success');
-//         } else {
-//             cancelResults.textContent = 'Erro ao cancelar o agendamento. Tente novamente.';
-//             cancelResults.classList.add('alert', 'alert-danger');
-//         }
+    fetch('http://localhost:3000/cancel', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, professional, date })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const cancelResults = document.getElementById('cancel-results');
+        cancelResults.className = '';
+        if (data.success) {
+            cancelResults.textContent = 'Agendamento cancelado com sucesso!';
+            cancelResults.classList.add('alert', 'alert-success');
+        } else {
+            cancelResults.textContent = 'Erro ao cancelar o agendamento. Tente novamente.';
+            cancelResults.classList.add('alert', 'alert-danger');
+        }
 
-//         setTimeout(() => {
-//             cancelResults.textContent = '';
-//             cancelResults.classList.remove('alert', 'alert-success', 'alert-danger');
-//         }, 3000);
-//     })
-//     .catch(error => {
-//         const cancelResults = document.getElementById('cancel-results');
-//         cancelResults.textContent = 'Erro ao cancelar o agendamento.';
-//         cancelResults.classList.add('alert', 'alert-danger');
-//         console.error('Erro:', error);
-//     });
-// }
+        setTimeout(() => {
+            cancelResults.textContent = '';
+            cancelResults.classList.remove('alert', 'alert-success', 'alert-danger');
+        }, 3000);
+    })
+    .catch(error => {
+        const cancelResults = document.getElementById('cancel-results');
+        cancelResults.textContent = 'Erro ao cancelar o agendamento.';
+        cancelResults.classList.add('alert', 'alert-danger');
+        console.error('Erro:', error);
+    });
+}
