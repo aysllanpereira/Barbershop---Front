@@ -462,11 +462,15 @@ async function enviar(event) {
                     const formattedDateTime = formatarDateTime(data.booking.date, data.booking.time);
                     messageDiv.textContent = `Agendamento realizado com sucesso!\n${formattedDateTime}`;
                     messageDiv.classList.add("alert", "alert-success");
+
+                    // salvar valores
+                    const bookingDetails = {name, service, professional, date, time};
     
                     // chamando a função para limpar o formulário
                     resetForm();
+
                     // enviar agendamento para o whatsapp
-                    // await enviarParaWhatsapp(data.booking);
+                    await enviarParaWhatsapp(bookingDetails);
 
                 } else if (data.alternative) {
                     messageDiv.textContent = `Profissional indisponível. Tente com outro profissional!`;
@@ -493,18 +497,16 @@ async function enviar(event) {
     }
 }
 
-// async function enviarParaWhatsapp(booking) {
-//     const name = document.getElementById('name').value;
-//     const service = document.getElementById('service').value;
-//     const professional = document.getElementById('professional').value;
-//     const date = document.getElementById('date').value;
-//     const time = document.getElementById('time').value;
+async function enviarParaWhatsapp({name, service, professional, date, time}) {
+    const numberWhatsapp = "5561998701721";
+    const messageZap = `Olá! Me chamo ${name}! Meu agendamento ficou para o dia ${date} às ${time} com o profissional ${professional} e o serviço é ${service}!`;
+    const whatsappUrl = `https://wa.me/${numberWhatsapp}?text=${encodeURIComponent(messageZap)}`;
 
-//     const numberZap = "5561998701721";
-//     let messageZap = `Olá! Me chamo ${name}! Meu agendamento ficou para o dia ${date} às ${time} com o profissional ${professional} e o serviço é ${service}!`;
+    window.open(whatsappUrl, "_blank");
 
-//     const linkZap = `https://wa.me/${numberZap}?text=${messageZap}`;
-// }
+}
+
+console.log("Opa: ", enviarParaWhatsapp)
 
 // Função para formatar data e hora
 function formatarDateTime(dateStr, timeStr) {

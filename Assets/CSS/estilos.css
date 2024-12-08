@@ -400,6 +400,11 @@ article {
     padding: 20px;
 }
 
+h1.mt-5 {
+    font-size: 2em;
+    margin-bottom: 25px;
+}
+
 #label-professional {
     margin-top: 15px;
 }
@@ -501,6 +506,13 @@ article {
     .form-label {
         font-size: 8px;
     }
+
+    /* article {
+        display: flex; 
+        justify-content: center;
+        flex-direction: column;
+
+    } */
 }
 
 /* Para celulares médios */
@@ -556,6 +568,13 @@ article {
     .container {
         padding: 10px;
     }
+
+    /* article {
+        display: flex; 
+        justify-content: center;
+        flex-direction: column;
+        
+    } */
 }
 
 /* Para celulares grandes e tablets em modo retrato */
@@ -645,6 +664,7 @@ article {
     }
 
     article {
+        /* display: flex; */
         flex-direction: column;
         align-items: flex-start;
         padding: 10px;
@@ -707,4 +727,11 @@ article {
     .carousel .text-galery h3 {
         font-size: 2em;
     }
+
+    /* article .container {
+        display: flex; 
+        justify-content: center;
+        flex-direction: column;
+        
+    } */
 }
