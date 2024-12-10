@@ -506,7 +506,7 @@ async function enviarParaWhatsapp({name, service, professional, date, time}) {
 
 }
 
-console.log("Opa: ", enviarParaWhatsapp)
+// console.log("Opa: ", enviarParaWhatsapp);
 
 // Função para formatar data e hora
 function formatarDateTime(dateStr, timeStr) {
