@@ -11,22 +11,24 @@
 
 /* Variáveis de cores */
 :root {
-    --body1: #889C9B;
+    --body1: #DCDCDC;
     --body2: #B2BEBF;
+    --body3: #D3D3D3;
+    --body4: #C0C0C0;
+    --section: #FFFAFA;
     --container: #FDFAE0;
 }
 
 body {
     padding: 170px 20px 20px 20px;
-    background-image: linear-gradient(to right, var(--body2));
-    background: #F2F2F2;
+    background: var(--body1);
     overflow-x: hidden;
 }
 
 .header-barber {
-    background-color: #FFFFFF;
+    background-color: var(--section);
+    box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.253);
     height: 150px;
-    border-radius: 8px 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -109,7 +111,7 @@ body {
 }
 
 .p1 {
-    background-color: #FFFFFF;
+    background-color: var(--section);
     border-radius: 8px;
     padding: 50px 20px;
 }
@@ -249,7 +251,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #FFFFFF;
+    background-color: var(--section);
     border-radius: 8px;
     width: 100%;
     height: 100%;
